@@ -14,8 +14,27 @@ In all cases it should print "Division finished"
     1
     Division finished
 """
+from decimal import DivisionByZero
 import typing
 
 
+class CustomException(Exception):
+    """Exception raised when y=1"""
+    pass
+
+
 def division(x: int, y: int) -> typing.Union[None, int]:
-    ...
+    try:
+        if(y == 1):
+            raise CustomException()
+        return x/y
+    except ZeroDivisionError:
+        print("Division by 0")
+    except CustomException:
+        print("Deletion on 1 get the same result")
+    finally:
+        print("Division finished")
+
+# print(division(1,0))
+# print(division(1,1))
+# print(division(2,2))

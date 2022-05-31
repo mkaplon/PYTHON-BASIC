@@ -13,3 +13,11 @@ Example:
 
     result.txt(content: "23, 78, 3")
 """
+if __name__ == "__main__":
+    all_values = []
+    for i in range(1, 21):
+        with open("files/file_{}.txt".format(i), 'r') as file:
+            all_values.append(file.read())
+    output = ', '.join(all_values)
+    with open("result.txt", 'w') as file2:
+        file2.write(output)
