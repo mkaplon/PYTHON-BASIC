@@ -10,8 +10,11 @@ Task:
  2. Find the buggy function and fix it.
 """
 
+import pytest
 
 def fibonacci_1(n):
+    if n==0:
+        return 0
     a, b = 0, 1
     for _ in range(n-1):
         a, b = b, a + b
@@ -20,6 +23,25 @@ def fibonacci_1(n):
 
 def fibonacci_2(n):
     fibo = [0, 1]
-    for i in range(1, n+1):
+    for i in range(2, n+1):
         fibo.append(fibo[i-1] + fibo[i-2])
     return fibo[n]
+
+numbers=[
+    ('f1', 0, 0),
+    ('f1', 1, 1),
+    ('f1', 2, 1),
+    ('f1', 13, 233),
+    ('f2', 0, 0),
+    ('f2', 1, 1),
+    ('f2', 2, 1),
+    ('f2', 13, 233)
+]
+
+@pytest.mark.parametrize('func, n, output', numbers)
+def test_1(func, n, output):
+    if func == 'f1':
+        assert fibonacci_1(n) == output
+    if func == 'f2':
+        assert fibonacci_2(n) == output
+
