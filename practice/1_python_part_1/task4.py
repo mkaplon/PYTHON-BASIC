@@ -10,4 +10,11 @@ from typing import List
 
 
 def calculate_power_with_difference(ints: List[int]) -> List[int]:
-    ...
+    #squares
+    output=[i**2 for i in ints]
+    for index in range(1, len(output)):
+        output[index]-=output[index-1]-ints[index-1]
+    return output
+
+# print(calculate_power_with_difference([1, 2, 3]))
+# print(calculate_power_with_difference([1,-1, -1]))

@@ -20,5 +20,13 @@ from typing import Tuple
 
 
 def get_min_max(filename: str) -> Tuple[int, int]:
-    ...
+    with open(filename) as opened_file:
+        ints=[]
+        for line in opened_file:
+            ints.append(line)
+    #converting into integers
+    ints = [int(el) for el in ints]
+    return min(ints), max(ints)
+
+# print(get_min_max("example.txt"))
 
