@@ -13,12 +13,13 @@ Example:
 
     result.txt(content: "23, 78, 3")
 """
-import os
+import os, re
 
 def read_files(directory: str):
     os.chdir(directory)
     all_values = []
-    for i in range(1, 21):
+    files_number = sum([bool(re.search(r"^file_\d+\.txt$", file)) for file in os.listdir("files")])
+    for i in range(1, files_number + 1):
         with open("files/file_{}.txt".format(i), 'r') as file:
             all_values.append(file.read())
     output = ', '.join(all_values)

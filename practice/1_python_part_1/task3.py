@@ -18,7 +18,7 @@ from typing import Iterable
 def build_from_unique_words(*lines: Iterable[str], word_number: int) -> str:
     if (word_number>=0):
         #text lines into lists
-        a=[i.split(" ") for i in lines]
+        a=[i.split() for i in lines]
         output_list=[]
         for text_line in a:
             try:
